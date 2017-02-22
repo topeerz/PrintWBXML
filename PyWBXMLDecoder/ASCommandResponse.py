@@ -30,44 +30,45 @@ THE SOFTWARE.
 from ASWBXML import ASWBXML
 import logging
 
+
 class ASCommandResponse:
+    def __init__(self, response):
+        self.wbxmlBody = response
+        try:
+            if (len(response) > 0):
+                self.xmlString = self.decodeWBXML(self.wbxmlBody)
+            else:
+                logging.error("Empty WBXML body passed")
+        except Exception as e:
+            logging.error("Error: {0}".format(e.message))
+            self.xmlString = None
 
-	def __init__(self, response):
-		self.wbxmlBody = response
-		try:
-			if ( len(response) > 0):
-				self.xmlString = self.decodeWBXML(self.wbxmlBody)
-			else:
-				logging.error("Empty WBXML body passed")
-		except Exception as e:
-			logging.error("Error: {0}".format(e.message))
-			self.xmlString = None
+    def getWBXMLBytes(self):
+        return self.wbxmlBytes
 
-	def getWBXMLBytes(self):
-		return self.wbxmlBytes
-	
-	def getXMLString(self):
-		return self.xmlString
-	
-	def decodeWBXML(self, body):
-		self.instance = ASWBXML()
-		self.instance.loadBytes(body)
-		return self.instance.getXml()
+    def getXMLString(self):
+        return self.xmlString
+
+    def decodeWBXML(self, body):
+        self.instance = ASWBXML()
+        self.instance.loadBytes(body)
+        return self.instance.getXml()
+
 
 if __name__ == "__main__":
-	import os	
-	logging.basicConfig(level=logging.INFO)
+    import os
 
-	projectDir = os.path.dirname(os.path.realpath("."))
-	samplesDir = os.path.join(projectDir, "Samples/")
-	listOfSamples = os.listdir(samplesDir)
+    logging.basicConfig(level=logging.INFO)
 
-	for filename in listOfSamples:
-		byteWBXML = open(samplesDir + os.sep + filename, "rb").read()
-		
-		logging.info("-"*100)
-		logging.info(filename)
-		logging.info("-"*100)
-		instance = ASCommandResponse(byteWBXML)
-		logging.info(instance.xmlString)
-		
+    projectDir = os.path.dirname(os.path.realpath("."))
+    samplesDir = os.path.join(projectDir, "Samples/")
+    listOfSamples = os.listdir(samplesDir)
+
+    for filename in listOfSamples:
+        byteWBXML = open(samplesDir + os.sep + filename, "rb").read()
+
+        logging.info("-" * 100)
+        logging.info(filename)
+        logging.info("-" * 100)
+        instance = ASCommandResponse(byteWBXML)
+        logging.info(instance.xmlString)

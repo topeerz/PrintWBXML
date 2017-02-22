@@ -27,26 +27,28 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 '''
+
+
 class ASWBXMLCodePage:
-	def __init__(self):
-		self.namespace = ""
-		self.xmlns = ""
-		self.tokenLookup = {}
-		self.tagLookup = {}
-	
-	def addToken(self, token, tag):
-		self.tokenLookup[token] = tag
-		self.tagLookup[tag] = token
-	
-	def getToken(self, tag):
-		if self.tagLookup.has_key(tag):
-			return self.tagLookup[tag]
-		return 0xFF
-	
-	def getTag(self, token):
-		if self.tokenLookup.has_key(token):
-			return self.tokenLookup[token]
-		return None
-	
-	def __repr__(self):
-		return str(self.tokenLookup)
+    def __init__(self):
+        self.namespace = ""
+        self.xmlns = ""
+        self.tokenLookup = {}
+        self.tagLookup = {}
+
+    def addToken(self, token, tag):
+        self.tokenLookup[token] = tag
+        self.tagLookup[tag] = token
+
+    def getToken(self, tag):
+        if self.tagLookup.has_key(tag):
+            return self.tagLookup[tag]
+        return 0xFF
+
+    def getTag(self, token):
+        if self.tokenLookup.has_key(token):
+            return self.tokenLookup[token]
+        return None
+
+    def __repr__(self):
+        return str(self.tokenLookup)
