@@ -8,11 +8,12 @@ Note: Current code is more a draft than anything else.
 Note: this is xcode/appcode osx only project.
 
 Installation:
-1. Instal chisel
+
+1. brew install chisel
 2. Create .lldbinit with content
   command script import /usr/local/opt/chisel/libexec/fblldb.py
   script fblldb.loadCommandsInDirectory('/Users/user/topeerz/.lldb')
-3. Clone this archive to latter directory
+3. Clone this archive to latter directory (note this is to be updated)
 4. Run xcode and have fun. Don't forget about using logging breakpoints.
 
 Syntax:
