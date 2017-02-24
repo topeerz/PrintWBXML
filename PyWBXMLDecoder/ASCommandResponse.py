@@ -34,14 +34,16 @@ import logging
 class ASCommandResponse:
     def __init__(self, response):
         self.wbxmlBody = response
+        self.xmlString = None
+
         try:
             if (len(response) > 0):
                 self.xmlString = self.decodeWBXML(self.wbxmlBody)
             else:
                 logging.error("Empty WBXML body passed")
+
         except Exception as e:
             logging.error("Error: {0}".format(e.message))
-            self.xmlString = None
 
     def getWBXMLBytes(self):
         return self.wbxmlBytes

@@ -29,7 +29,7 @@ class PrintWBXML(fb.FBCommand):
         # going through tmp file is dirty hack but so far I failed to get utf8 string from fb api
 
         try:
-            os.remove("/tmp/whatever")
+            open("/tmp/whatever", 'w').close() # make sure file is there and is empty
         except OSError:
             pass
 
@@ -39,4 +39,11 @@ class PrintWBXML(fb.FBCommand):
         byteWBXML = open("/tmp/whatever", "rb").read()
 
         instance = ASCommandResponse.ASCommandResponse(byteWBXML)
-        print instance.xmlString
+
+
+        if instance.getXMLString():
+            print instance.getXMLString()
+
+        else:
+            print "RAW WBXML"
+            print byteWBXML
