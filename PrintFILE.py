@@ -9,25 +9,19 @@ cmd_folder = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(insp
 if cmd_folder not in sys.path:
     sys.path.insert(0, cmd_folder)
 
-from PyWBXMLDecoder import ASCommandResponse
-
-
 def lldbcommands():
-    return [PrintWBXML()]
+    return [PrintFile()]
 
 
-class PrintWBXML(fb.FBCommand):
+class PrintFile(fb.FBCommand):
     def name(self):
-        return 'pwbxml'
+        return 'pfile'
 
     def description(self):
-        return 'prints pwbxml'
+        return 'prints evaluated value to file'
 
     def run(self, arguments, options):
-        WBXMLVariable = arguments[0]
-
-        # byteWBXML = fb.evaluateExpressionValue("(NSString*)[[NSString alloc] initWithData:URLRequest.HTTPBody encoding:4]").GetObjectDescription()
-        # going through tmp file is dirty hack but so far I failed to get utf8 string from fb api
+        inputData = arguments[0]
 
         try:
             open("/tmp/whatever", 'w').close() # make sure file is there and is empty
@@ -36,17 +30,8 @@ class PrintWBXML(fb.FBCommand):
 
         fb.evaluateExpressionValue(
             "(void)[%(wbxmlvar)s writeToURL:(NSURL*)[NSURL URLWithString:@\"file:///tmp/whatever\"] atomically:YES]" % {
-                'wbxmlvar': WBXMLVariable});
-        byteWBXML = open("/tmp/whatever", "rb").read()
-
-        instance = ASCommandResponse.ASCommandResponse(byteWBXML)
-
-        if instance.getXMLString():
-            out = instance.getXMLString()
-
-        else:
-            out = "RAW WBXML"
-            out += "\n" + byteWBXML
+                'wbxmlvar': inputData});
+        out = open("/tmp/whatever", "rb").read()
 
         print out
 
