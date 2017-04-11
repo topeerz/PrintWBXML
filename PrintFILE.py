@@ -28,10 +28,9 @@ class PrintFile(fb.FBCommand):
         except OSError:
             pass
 
-        fb.evaluateExpressionValue(
-            "(void)[%(wbxmlvar)s writeToURL:(NSURL*)[NSURL URLWithString:@\"file:///tmp/whatever\"] atomically:YES]" % {
-                'wbxmlvar': inputData});
-        out = open("/tmp/whatever", "rb").read()
+
+        out = fb.evaluateExpressionValue( "%(wbxmlvar)s" % {
+                'wbxmlvar': inputData}).GetObjectDescription()
 
         print out
 
