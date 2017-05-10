@@ -34,6 +34,7 @@ class PrintWBXML(fb.FBCommand):
         except OSError:
             pass
 
+        # this will work only on sim as it writes to local device /tmp file.
         fb.evaluateExpressionValue(
             "(void)[%(wbxmlvar)s writeToURL:(NSURL*)[NSURL URLWithString:@\"file:///tmp/whatever\"] atomically:YES]" % {
                 'wbxmlvar': WBXMLVariable});

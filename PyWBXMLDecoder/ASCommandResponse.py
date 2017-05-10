@@ -43,7 +43,7 @@ class ASCommandResponse:
                 logging.error("Empty WBXML body passed")
 
         except Exception as e:
-            logging.error("Error: {0}".format(e.message))
+           logging.exception("Error!")
 
     def getWBXMLBytes(self):
         return self.wbxmlBytes
