@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 import lldb
-import fblldbbase as fb
+import fbchisellldbbase as fb
 import os, sys, inspect
 import datetime
 
