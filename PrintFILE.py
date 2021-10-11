@@ -32,7 +32,7 @@ class PrintFile(fb.FBCommand):
         out = fb.evaluateExpressionValue( "%(wbxmlvar)s" % {
                 'wbxmlvar': inputData}).GetObjectDescription()
 
-        print out
+        print(out)
 
         with open("/tmp/wbxml.log", "a") as f:
             f.write( str(datetime.datetime.now()) + "\n" )

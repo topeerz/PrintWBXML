@@ -25,7 +25,7 @@ class PrintRawFile(fb.FBCommand):
 
         out = inputData
 
-        print out
+        print(out)
 
         with open("/tmp/wbxml.log", "a") as f:
             f.write( str(datetime.datetime.now()) + "\n" )

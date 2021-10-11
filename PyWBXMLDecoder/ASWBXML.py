@@ -30,10 +30,10 @@ THE SOFTWARE.
 import xml.dom.minidom
 import logging
 
-from ASWBXMLCodePage import ASWBXMLCodePage
-from ASWBXMLByteQueue import ASWBXMLByteQueue
-from GlobalTokens import GlobalTokens
-from InvalidDataException import InvalidDataException
+from PyWBXMLDecoder.ASWBXMLCodePage import ASWBXMLCodePage
+from PyWBXMLDecoder.ASWBXMLByteQueue import ASWBXMLByteQueue
+from PyWBXMLDecoder.GlobalTokens import GlobalTokens
+from PyWBXMLDecoder.InvalidDataException import InvalidDataException
 
 
 class ASWBXML:

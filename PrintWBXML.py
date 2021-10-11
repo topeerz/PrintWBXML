@@ -49,7 +49,7 @@ class PrintWBXML(fb.FBCommand):
             out = "RAW WBXML"
             out += "\n" + byteWBXML
 
-        print out
+        print(out)
 
         with open("/tmp/wbxml.log", "a") as f:
             f.write( str(datetime.datetime.now()) + "\n" )

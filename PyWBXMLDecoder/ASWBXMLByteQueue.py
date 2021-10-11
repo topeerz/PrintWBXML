@@ -27,7 +27,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 '''
-from Queue import Queue
+from queue import Queue
 import logging
 
 
@@ -40,7 +40,7 @@ class ASWBXMLByteQueue(Queue):
         Queue.__init__(self)
 
         for byte in wbxmlBytes:
-            self.put(ord(byte))
+            self.put(byte)
             self.bytesEnqueued += 1
 
         logging.debug("Array byte count: %d, enqueued: %d" % (self.qsize(), self.bytesEnqueued))
